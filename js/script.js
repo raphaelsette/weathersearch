@@ -1,5 +1,7 @@
+import { secretKey } from "./config.js";
+
 // Variáveis e seleção de elementos
-const apiKey = "";
+const apiKey = secretKey;
 
 const cidadeInput = document.querySelector("#cidade-input");
 const procurarBtn = document.querySelector("#procurar");
