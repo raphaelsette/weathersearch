@@ -1,11 +1,10 @@
+// o arquivo da api key foi separado para não ficar público no github
 import { secretKey } from "./key_openweathermap.js";
 
-// Variáveis e seleção de elementos
+// variáveis e seleção de elementos
 const apiKey = secretKey;
-
 const cidadeInput = document.querySelector("#cidade-input");
 const procurarBtn = document.querySelector("#procurar");
-
 const cidadeElement = document.querySelector("#cidade");
 const tempElement = document.querySelector("#temperatura span");
 const descElement = document.querySelector("#descricao");
@@ -13,19 +12,24 @@ const climaIconElement = document.querySelector("#clima-icon");
 const paisElement = document.querySelector("#pais");
 const umidadeElement = document.querySelector("#umidade span");
 const ventoElement = document.querySelector("#vento span");
-
 const climaContainer = document.querySelector("#clima-data");
 
-// Funções
-const getWeatherData = async(cidade) => {
-    const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${apiKey}&lang=pt_br`;
+// evento que chama a função showWeatherData quando clica no botão de buscar
+procurarBtn.addEventListener("click", (e) => {
+    e.preventDefault()
+    const cidade = cidadeInput.value;
+    showWeatherData(cidade);
+});
 
-    const res = await fetch(apiWeatherURL)
-    const data = await res.json();
+// evento que chama a função showWeatherData quando pressiona no teclado o "enter"
+cidadeInput.addEventListener("keyup", (e) => {
+    if (e.code == "Enter"){
+        const cidade = e.target.value;
+        showWeatherData(cidade);
+    }
+})
 
-    return data;
-};
-
+// função que chama a função getWeatherData e preenche as informações recebidas do json
 const showWeatherData = async (cidade) => {
     const data = await getWeatherData(cidade);
 
@@ -40,16 +44,12 @@ const showWeatherData = async (cidade) => {
     climaContainer.classList.remove("hide");
 };
 
-// Eventos
-procurarBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    const cidade = cidadeInput.value;
-    showWeatherData(cidade);
-});
+// função que busca as informação da cidade na api da openweathermap
+const getWeatherData = async(cidade) => {
+    const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${apiKey}&lang=pt_br`;
 
-cidadeInput.addEventListener("keyup", (e) => {
-    if (e.code == "Enter"){
-        const cidade = e.target.value;
-        showWeatherData(cidade);
-    }
-})
+    const res = await fetch(apiWeatherURL)
+    const data = await res.json();
+
+    return data;
+};
