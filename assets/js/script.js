@@ -50,6 +50,10 @@ const getWeatherData = async(cidade) => {
 
     const res = await fetch(apiWeatherURL)
     const data = await res.json();
+    if (!res.ok) {
+        const message = `O servidor retornou o erro: ${res.status}`;
+        throw new Error(message);
+    }
 
     return data;
 };
