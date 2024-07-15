@@ -33,7 +33,7 @@ const showWeatherData = async (cidade) => {
     tempElement.innerText = parseInt(data.main.temp);
     descElement.innerText = data.weather[0].description;
     climaIconElement.setAttribute("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
-    paisElement.setAttribute("src", `https://www.countryflagicons.com/FLAT/64/${data.sys.country}.png`);
+    paisElement.setAttribute("src", `https://purecatamphetamine.github.io/country-flag-icons/3x2/${data.sys.country}.svg`);
     umidadeElement.innerText = `${data.main.humidity}%`;
     ventoElement.innerText = `${data.wind.speed}km/h`;
 
