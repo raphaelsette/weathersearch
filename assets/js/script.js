@@ -1,4 +1,4 @@
-import { secretKey } from "./config.js";
+import { secretKey } from "./key_openweathermap.js";
 
 // Variáveis e seleção de elementos
 const apiKey = secretKey;
