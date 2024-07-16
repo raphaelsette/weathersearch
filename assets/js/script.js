@@ -31,17 +31,21 @@ cidadeInput.addEventListener("keyup", (e) => {
 
 // função que chama a função getWeatherData e preenche as informações recebidas do json
 const showWeatherData = async (cidade) => {
-    const data = await getWeatherData(cidade);
+    try {
+        const data = await getWeatherData(cidade);
 
-    cidadeElement.innerText = data.name;
-    tempElement.innerText = parseInt(data.main.temp);
-    descElement.innerText = data.weather[0].description;
-    climaIconElement.setAttribute("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
-    paisElement.setAttribute("src", `https://purecatamphetamine.github.io/country-flag-icons/3x2/${data.sys.country}.svg`);
-    umidadeElement.innerText = `${data.main.humidity}%`;
-    ventoElement.innerText = `${data.wind.speed}km/h`;
+        cidadeElement.innerText = data.name;
+        tempElement.innerText = parseInt(data.main.temp);
+        descElement.innerText = data.weather[0].description;
+        climaIconElement.setAttribute("src", `http://openweathermap.org/img/wn/${data.weather[0].icon}.png`);
+        paisElement.setAttribute("src", `https://purecatamphetamine.github.io/country-flag-icons/3x2/${data.sys.country}.svg`);
+        umidadeElement.innerText = `${data.main.humidity}%`;
+        ventoElement.innerText = `${data.wind.speed}km/h`;
 
-    climaContainer.classList.remove("hide");
+        climaContainer.classList.remove("hide");
+        } catch (error) {
+            alert(error.message);
+    }
 };
 
 // função que busca as informação da cidade na api da openweathermap
