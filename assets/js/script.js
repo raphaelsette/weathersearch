@@ -17,7 +17,11 @@ const climaContainer = document.querySelector("#clima-data");
 // evento que chama a função showWeatherData quando clica no botão de buscar
 procurarBtn.addEventListener("click", (e) => {
      if (!cidadeInput.value) {   
-        alert("Informe uma cidade.")
+        Swal.fire({
+            icon: "error",
+            text: "Informe uma cidade.",
+            confirmButtonColor: "#3085d6"
+        });
     } else {
         e.preventDefault()
         const cidade = cidadeInput.value;
@@ -29,7 +33,11 @@ procurarBtn.addEventListener("click", (e) => {
 cidadeInput.addEventListener("keyup", (e) => {
     if (e.code == "Enter"){
         if (!cidadeInput.value) {   
-            alert("Informe uma cidade.")
+            Swal.fire({
+                icon: "error",
+                text: "Informe uma cidade.",
+                confirmButtonColor: "#3085d6"
+            });
         } else {
             const cidade = e.target.value;
             showWeatherData(cidade);
@@ -52,7 +60,12 @@ const showWeatherData = async (cidade) => {
 
         climaContainer.classList.remove("hide");
         } catch (error) {
-            alert(error.message);
+            Swal.fire({
+                icon: "error",
+                title: `${error.message}`,
+                text: "O servidor encontrou um problema, tente novamente.",
+                confirmButtonColor: "#3085d6"
+            });
     }
 };
 
@@ -63,7 +76,7 @@ const getWeatherData = async(cidade) => {
     const res = await fetch(apiWeatherURL)
     const data = await res.json();
     if (!res.ok) {
-        const message = `O servidor retornou o erro: ${res.status}`;
+        const message = `Erro ${res.status}`;
         throw new Error(message);
     }
 
