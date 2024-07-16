@@ -16,16 +16,24 @@ const climaContainer = document.querySelector("#clima-data");
 
 // evento que chama a função showWeatherData quando clica no botão de buscar
 procurarBtn.addEventListener("click", (e) => {
-    e.preventDefault()
-    const cidade = cidadeInput.value;
-    showWeatherData(cidade);
+     if (!cidadeInput.value) {   
+        alert("Informe uma cidade.")
+    } else {
+        e.preventDefault()
+        const cidade = cidadeInput.value;
+        showWeatherData(cidade);
+    }
 });
 
 // evento que chama a função showWeatherData quando pressiona no teclado o "enter"
 cidadeInput.addEventListener("keyup", (e) => {
     if (e.code == "Enter"){
-        const cidade = e.target.value;
-        showWeatherData(cidade);
+        if (!cidadeInput.value) {   
+            alert("Informe uma cidade.")
+        } else {
+            const cidade = e.target.value;
+            showWeatherData(cidade);
+        }
     }
 })
 
