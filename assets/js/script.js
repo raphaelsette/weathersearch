@@ -3,6 +3,7 @@ import { secretKey } from "./key_openweathermap.js";
 
 // variáveis e seleção de elementos
 const apiKey = secretKey;
+let codigo_erro;
 const cidadeInput = document.querySelector("#cidade-input");
 const procurarBtn = document.querySelector("#procurar");
 const cidadeElement = document.querySelector("#cidade");
@@ -60,12 +61,20 @@ const showWeatherData = async (cidade) => {
 
         climaContainer.classList.remove("hide");
         } catch (error) {
-            Swal.fire({
-                icon: "error",
-                title: `${error.message}`,
-                text: "O servidor encontrou um problema, tente novamente.",
-                confirmButtonColor: "#3085d6"
-            });
+            if (codigo_erro == 400 || codigo_erro == 404){
+                Swal.fire({
+                    icon: "error",
+                    text: "A cidade informada não foi encontrada, tente novamente.",
+                    confirmButtonColor: "#3085d6"
+                });
+            } else {
+                Swal.fire({
+                    icon: "error",
+                    text: "Ocorreu um erro interno no servidor, tente novamente.",
+                    confirmButtonColor: "#3085d6"
+                });
+            }    
+            
     }
 };
 
@@ -76,8 +85,7 @@ const getWeatherData = async(cidade) => {
     const res = await fetch(apiWeatherURL)
     const data = await res.json();
     if (!res.ok) {
-        const message = `Erro ${res.status}`;
-        throw new Error(message);
+        codigo_erro = `${res.status}`;
     }
 
     return data;
