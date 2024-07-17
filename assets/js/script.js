@@ -19,8 +19,9 @@ const climaContainer = document.querySelector("#clima-data");
 procurarBtn.addEventListener("click", (e) => {
      if (!cidadeInput.value) {   
         Swal.fire({
-            icon: "error",
-            text: "Informe uma cidade.",
+            icon: "warning",
+            title: "Oops...",
+            text: "Informe uma cidade para continuar.",
             confirmButtonColor: "#3085d6"
         });
     } else {
@@ -35,8 +36,9 @@ cidadeInput.addEventListener("keyup", (e) => {
     if (e.code == "Enter"){
         if (!cidadeInput.value) {   
             Swal.fire({
-                icon: "error",
-                text: "Informe uma cidade.",
+                icon: "warning",
+                title: "Oops...",
+                text: "Informe uma cidade para continuar.",
                 confirmButtonColor: "#3085d6"
             });
         } else {
@@ -63,13 +65,15 @@ const showWeatherData = async (cidade) => {
         } catch (error) {
             if (codigo_erro == 400 || codigo_erro == 404){
                 Swal.fire({
-                    icon: "error",
+                    icon: "warning",
+                    title: "Oops...",
                     text: "A cidade informada não foi encontrada, tente novamente.",
                     confirmButtonColor: "#3085d6"
                 });
             } else {
                 Swal.fire({
                     icon: "error",
+                    title: "Oops...",
                     text: "Ocorreu um erro interno no servidor, tente novamente.",
                     confirmButtonColor: "#3085d6"
                 });
