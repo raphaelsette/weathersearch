@@ -17,7 +17,7 @@ const climaContainer = document.querySelector("#clima-data");
 
 // evento que chama a função showWeatherData quando clica no botão de buscar
 procurarBtn.addEventListener("click", (e) => {
-     if (!cidadeInput.value) {   
+    if (!cidadeInput.value) {
         Swal.fire({
             icon: "warning",
             title: "Oops...",
@@ -33,8 +33,8 @@ procurarBtn.addEventListener("click", (e) => {
 
 // evento que chama a função showWeatherData quando pressiona no teclado o "enter"
 cidadeInput.addEventListener("keyup", (e) => {
-    if (e.code == "Enter"){
-        if (!cidadeInput.value) {   
+    if (e.code == "Enter") {
+        if (!cidadeInput.value) {
             Swal.fire({
                 icon: "warning",
                 title: "Oops...",
@@ -62,28 +62,28 @@ const showWeatherData = async (cidade) => {
         ventoElement.innerText = `${data.wind.speed}km/h`;
 
         climaContainer.classList.remove("hide");
-        } catch (error) {
-            if (codigo_erro == 400 || codigo_erro == 404){
-                Swal.fire({
-                    icon: "warning",
-                    title: "Oops...",
-                    text: "A cidade informada não foi encontrada, tente novamente.",
-                    confirmButtonColor: "#3085d6"
-                });
-            } else {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Ocorreu um erro interno no servidor, tente novamente.",
-                    confirmButtonColor: "#3085d6"
-                });
-            }    
-            
+    } catch (error) {
+        if (codigo_erro == 400 || codigo_erro == 404) {
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "A cidade informada não foi encontrada, tente novamente.",
+                confirmButtonColor: "#3085d6"
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Ocorreu um erro interno no servidor, tente novamente.",
+                confirmButtonColor: "#3085d6"
+            });
+        }
+
     }
 };
 
 // função que busca as informação da cidade na api da openweathermap
-const getWeatherData = async(cidade) => {
+const getWeatherData = async (cidade) => {
     const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${apiKey}&lang=pt_br`;
 
     const res = await fetch(apiWeatherURL)
