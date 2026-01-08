@@ -1,3 +1,5 @@
+![Status](https://img.shields.io/badge/status-ativo-brightgreen) ![Projeto](https://img.shields.io/badge/projeto-portfólio-purple) ![Linguagem](https://img.shields.io/badge/linguagem-JavaScript-yellow)
+
 # 🌤️ Weather Search App
 
 Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap para fornecer detalhes meteorológicos de cidades ao redor do mundo.
