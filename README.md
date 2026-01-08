@@ -2,7 +2,7 @@
 
 # 🌤️ Weather Search App
 
-Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap para fornecer detalhes meteorológicos de cidades ao redor do mundo.
+Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap para fornecer detalhes meteorológicos de cidades.
 
 
 ## 🎯 Sobre o Projeto
@@ -16,7 +16,14 @@ O Weather Search permite que os usuários digitem o nome de qualquer cidade para
 
 O projeto foi construído com foco em **Clean Code** e **Experiência do Usuário (UX)**, utilizando alertas personalizados e manipulação dinâmica do DOM.
 
----
+
+## 🛠️ Funcionalidades Detalhadas
+
+* **Validação de Input:** O sistema impede buscas vazias com alertas visuais.
+* **Tratamento de Erros:** Caso a cidade não exista (Erro 404) ou ocorra um problema no servidor, o usuário é notificado via SweetAlert.
+* **Suporte ao Teclado:** É possível realizar a busca pressionando a tecla `Enter`.
+* **Interface Dinâmica:** O cartão de informações só aparece após a primeira busca bem-sucedida.
+
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -30,7 +37,6 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 * **[Font Awesome](https://fontawesome.com/):** Ícones vetoriais.
 * **[Country Flag Icons](https://purecatamphetamine.github.io/country-flag-icons/):** Exibição de bandeiras via SVG.
 
----
 
 ## ⚙️ Como Executar o Projeto
 
@@ -38,7 +44,7 @@ Como o projeto utiliza **Módulos JavaScript** (o arquivo de chave de API é imp
 
 1.  **Clone o repositório:**
     ```bash
-    git clone [https://github.com/raphaelsette/weathersearch.git](https://github.com/raphaelsette/weathersearch.git)
+    git clone https://github.com/raphaelsette/weathersearch.git
     ```
 
 2.  **Configure sua chave de API:**
@@ -53,10 +59,3 @@ Como o projeto utiliza **Módulos JavaScript** (o arquivo de chave de API é imp
     * Abra o arquivo `index.html` com o **Live Server**.
 
 ---
-
-## 🛠️ Funcionalidades Detalhadas
-
-* **Validação de Input:** O sistema impede buscas vazias com alertas visuais.
-* **Tratamento de Erros:** Caso a cidade não exista (Erro 404) ou ocorra um problema no servidor, o usuário é notificado via SweetAlert.
-* **Suporte ao Teclado:** É possível realizar a busca pressionando a tecla `Enter`.
-* **Interface Dinâmica:** O cartão de informações só aparece após a primeira busca bem-sucedida.
