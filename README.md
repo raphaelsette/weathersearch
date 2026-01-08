@@ -4,8 +4,6 @@
 
 Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap para fornecer detalhes meteorológicos de cidades ao redor do mundo.
 
-![Status do Projeto](https://img.shields.io/badge/status-desenvolvimento-orange)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## 🎯 Sobre o Projeto
 
