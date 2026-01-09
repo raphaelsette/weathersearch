@@ -2,17 +2,18 @@
 
 # 🌤️ Weather Search App
 
-Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap para fornecer detalhes meteorológicos de cidades.
+Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap. O projeto foi refatorado para incluir um Backend Proxy em Node.js, garantindo que a chave da API não seja exposta no navegador do utilizador.
 
 
 ## 🎯 Sobre o Projeto
 
-O Weather Search permite que os usuários digitem o nome de qualquer cidade para obter informações instantâneas como:
-* Temperatura atual em graus Celsius.
-* Condições climáticas (ex: céu limpo, chuva leve).
-* Umidade relativa do ar.
-* Velocidade do vento.
-* Identificação visual através da bandeira do país.
+O Weather Search permite obter informações meteorológicas instantâneas, como temperatura, condições climáticas, humidade e velocidade do vento. A arquitetura atual utiliza:
+
+- **Frontend:** Interface moderna e responsiva.
+
+- **Backend:** Servidor Node.js que atua como intermediário (Proxy) para segurança de credenciais.
+
+- **Estado Global:** Gestão centralizada dos dados para uma interface mais previsível.
 
 O projeto foi construído com foco em **Clean Code** e **Experiência do Usuário (UX)**, utilizando alertas personalizados e manipulação dinâmica do DOM.
 
@@ -29,33 +30,45 @@ O projeto foi construído com foco em **Clean Code** e **Experiência do Usuári
 
 O projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-* **HTML5:** Estruturação semântica.
-* **CSS3:** Estilização moderna com gradientes e layouts flexíveis.
-* **JavaScript (ES6+):** Lógica assíncrona, Fetch API e módulos.
-* **[OpenWeatherMap API](https://openweathermap.org/api):** Fonte de dados meteorológicos.
-* **[SweetAlert2](https://sweetalert2.github.io/):** Pop-ups de erro e validação elegantes.
-* **[Font Awesome](https://fontawesome.com/):** Ícones vetoriais.
-* **[Country Flag Icons](https://purecatamphetamine.github.io/country-flag-icons/):** Exibição de bandeiras via SVG.
+- **Frontend:** HTML5, CSS3, JavaScript (ES6+).
+- **Backend:** Node.js, Express, Axios, Cors, Dotenv.
+- **APIs:** [OpenWeatherMap API](https://openweathermap.org/api) e [Country Flag Icons](https://purecatamphetamine.github.io/country-flag-icons/)
+- **Feedback visual:** [SweetAlert2](https://sweetalert2.github.io/) e [Font Awesome](https://fontawesome.com/)
 
 
 ## ⚙️ Como Executar o Projeto
 
-Como o projeto utiliza **Módulos JavaScript** (o arquivo de chave de API é importado), você precisará rodar a aplicação através de um servidor local (como a extensão *Live Server* do VS Code).
+1.  **Preparar o Backend:**
 
-1.  **Clone o repositório:**
-    ```bash
-    git clone https://github.com/raphaelsette/weathersearch.git
-    ```
+Navegue até a pasta do servidor e instale as dependências:
 
-2.  **Configure sua chave de API:**
+```bash
+cd weather-backend
+npm install
+```
+
+
+2. **Configurar as Variáveis de Ambiente**
+
+Crie um ficheiro `.env` na raiz da pasta `weather-backend` (baseado no ficheiro .env.example):
+
+```
+PORT=3000
+WEATHER_API_KEY=SUA_CHAVE_AQUI
+```
+
+
+3.  **Crie sua chave de API:**
     * Crie uma conta no [OpenWeatherMap](https://openweathermap.org/).
-    * Crie um arquivo chamado `assets/js/key_openweathermap.js`.
-    * Dentro dele, adicione:
-        ```javascript
-        export const secretKey = "SUA_CHAVE_AQUI";
-        ```
+    * Dentro do arquivo `.env` adicione a chave.
 
-3.  **Abra o projeto:**
-    * Abra o arquivo `index.html` com o **Live Server**.
+**Nota:** Nunca envie o ficheiro `.env` para o GitHub. Ele já está listado no `.gitignore`.
 
----
+
+4.  **Iniciar o servidor:**
+
+```
+npm run dev
+```
+
+O servidor ficará disponível em `http://localhost:3000`
