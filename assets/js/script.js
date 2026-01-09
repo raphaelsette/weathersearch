@@ -1,8 +1,4 @@
-// o arquivo da api key foi separado para não ficar público no github
-import { secretKey } from "./key_openweathermap.js";
-
 // variáveis e seleção de elementos
-const apiKey = secretKey;
 let codigo_erro;
 const cidadeInput = document.querySelector("#cidade-input");
 const procurarBtn = document.querySelector("#procurar");
@@ -18,12 +14,7 @@ const climaContainer = document.querySelector("#clima-data");
 // evento que chama a função showWeatherData quando clica no botão de buscar
 procurarBtn.addEventListener("click", (e) => {
     if (!cidadeInput.value) {
-        Swal.fire({
-            icon: "warning",
-            title: "Oops...",
-            text: "Informe uma cidade para continuar.",
-            confirmButtonColor: "#3085d6"
-        });
+        sweetAlertToast('warning', 'Oops...', 'Informe uma cidade para continuar.');
     } else {
         e.preventDefault()
         const cidade = cidadeInput.value;
@@ -35,18 +26,22 @@ procurarBtn.addEventListener("click", (e) => {
 cidadeInput.addEventListener("keyup", (e) => {
     if (e.code == "Enter") {
         if (!cidadeInput.value) {
-            Swal.fire({
-                icon: "warning",
-                title: "Oops...",
-                text: "Informe uma cidade para continuar.",
-                confirmButtonColor: "#3085d6"
-            });
+            sweetAlertToast('warning', 'Oops...', 'Informe uma cidade para continuar.');
         } else {
             const cidade = e.target.value;
             showWeatherData(cidade);
         }
     }
 })
+
+// função dos alertas
+function sweetAlertToast(tipoAlerta, tituloAlerta, mensagemAlerta) {
+    Swal.fire({
+        icon: tipoAlerta,
+        title: tituloAlerta,
+        text: mensagemAlerta
+    });
+};
 
 // função que chama a função getWeatherData e preenche as informações recebidas do json
 const showWeatherData = async (cidade) => {
@@ -64,29 +59,19 @@ const showWeatherData = async (cidade) => {
         climaContainer.classList.remove("hide");
     } catch (error) {
         if (codigo_erro == 400 || codigo_erro == 404) {
-            Swal.fire({
-                icon: "warning",
-                title: "Oops...",
-                text: "A cidade informada não foi encontrada, tente novamente.",
-                confirmButtonColor: "#3085d6"
-            });
+            sweetAlertToast('warning', 'Oops...', 'A cidade informada não foi encontrada, tente novamente.');
         } else {
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Ocorreu um erro interno no servidor, tente novamente.",
-                confirmButtonColor: "#3085d6"
-            });
+            sweetAlertToast('error', 'Oops...', 'Ocorreu um erro interno no servidor, tente novamente.');
         }
 
     }
 };
 
-// função que busca as informação da cidade na api da openweathermap
+// função que busca as informação da cidade no servidor nodejs
 const getWeatherData = async (cidade) => {
-    const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${cidade}&units=metric&appid=${apiKey}&lang=pt_br`;
+    const apiURL = `http://localhost:3000/api/weather?city=${cidade}`;
 
-    const res = await fetch(apiWeatherURL)
+    const res = await fetch(apiURL)
     const data = await res.json();
     if (!res.ok) {
         codigo_erro = `${res.status}`;
