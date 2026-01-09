@@ -50,7 +50,7 @@ npm install
 
 2. **Configurar as Variáveis de Ambiente**
 
-Crie um ficheiro `.env` na raiz da pasta `weather-backend` (baseado no ficheiro .env.example):
+Crie um arquivo `.env` na raiz da pasta `weather-backend` (baseado no .env.example):
 
 ```
 PORT=3000
@@ -62,7 +62,7 @@ WEATHER_API_KEY=SUA_CHAVE_AQUI
     * Crie uma conta no [OpenWeatherMap](https://openweathermap.org/).
     * Dentro do arquivo `.env` adicione a chave.
 
-**Nota:** Nunca envie o ficheiro `.env` para o GitHub. Ele já está listado no `.gitignore`.
+**Nota:** Nunca envie o arquivo `.env` para o GitHub. Ele já está listado no `.gitignore`.
 
 
 4.  **Iniciar o servidor:**
