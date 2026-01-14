@@ -4,6 +4,7 @@
 
 Uma aplicação interativa de busca de clima em tempo real que utiliza a API do OpenWeatherMap. O projeto foi refatorado para incluir um Backend Proxy em Node.js, garantindo que a chave da API não seja exposta no navegador do utilizador.
 
+<img src="./assets/img/screenshots/print_1.png" width="800px">
 
 ## 🎯 Sobre o Projeto
 
